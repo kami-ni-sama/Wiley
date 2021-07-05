@@ -1,5 +1,5 @@
 import java.util.*;
-
+//This is the second commit updated file
 public class Staff {
 	
 
@@ -63,7 +63,7 @@ public class Staff {
 //		Employee[] employees = new Employee[10];
 		Scanner sc = new Scanner(System.in);
 		ArrayList<Employee> employees = new ArrayList<Employee>();
-		System.out.println("Enter the number of employees you need to enter the records for ");
+		System.out.println("Enter the number of employees you need to enter the records for: ");
 		int n = sc.nextInt();
 		int i = 0;
 		int choice;
