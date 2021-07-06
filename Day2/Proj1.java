@@ -26,23 +26,23 @@ public class Proj1{
 //			u.display();
 //		}
 		
-		ArrayList<Employee> employees = new ArrayList<Employee>();
+//		ArrayList<Employee> employees = new ArrayList<Employee>();
+		ArrayList<Employee> employeesProj1 = new ArrayList<Employee>();
+		ArrayList<Employee> employeesProj2 = new ArrayList<Employee>();
 		for(User user: users) {
 			if(user instanceof Employee) {
-				Employee temp = (Employee)user;
-				employees.add(temp);
+				if(((Employee) user).project.projectId==1) {
+					Employee temp = (Employee)user;
+					employeesProj1.add(temp);
+				}
+				if(((Employee) user).project.projectId==2) {
+					Employee temp = (Employee)user;
+					employeesProj2.add(temp);
+				}
+				
 			}
 		}
 		
-		ArrayList<Employee> employeesProj1 = new ArrayList<Employee>();
-		ArrayList<Employee> employeesProj2 = new ArrayList<Employee>();
-		
-		for(Employee e: employees) {
-			if(e.project.projectId==1) 
-				employeesProj1.add(e);
-			else if(e.project.projectId==2) 
-				employeesProj2.add(e);
-		}
 		double costIncurredProj1 = 0;
 		for(Employee e: employeesProj1) 
 			costIncurredProj1+=e.salary;
