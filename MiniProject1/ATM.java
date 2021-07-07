@@ -16,3 +16,16 @@ public class ATM {
 	}
 
 }
+
+/*
+Output:
+
+	Credit 3000.0 3000.0
+	Debit 200.0 2800.0
+	Credit 10000.0 12800.0
+	Debit 5000.0 7800.0
+	null
+	CUST1
+	null
+	
+*/
