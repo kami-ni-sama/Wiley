@@ -18,11 +18,10 @@ Class structure:
 	-balance
 	-logs(for transactions)
 -member functions:
-	**Getter/Setter methods for all member variables
+	**Getter/Setter methods required variables
 	-createAccount
 	-checkBalance
 	-deposit
-	-withdraw
 	-displayLogs(display all the previous transactions)
 	-changePassword
 	-changeEmail

@@ -1,5 +1,7 @@
 package wiley.training.advanced.miniproject1;
 
+enum TransactionType{Credit, Debit};
+
 public class Transaction{
 	TransactionType transactionType;
 	double transactionAmount;

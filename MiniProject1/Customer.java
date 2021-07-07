@@ -2,9 +2,6 @@ package wiley.training.advanced.miniproject1;
 
 import java.util.*;
 
-enum TransactionType{Credit, Debit};
-
-
 public class Customer {
 	static int autoIncrementID = 0; 
 	private String custName;
@@ -23,7 +20,6 @@ public class Customer {
 		
 	}
 	
-	
 	public String getCustID() {
 		return custID;
 	}
@@ -39,9 +35,6 @@ public class Customer {
 	public static void setCustPassword(String custID, String custNewPassword) {
 		Customer.custPassword.replace(custID, custNewPassword);
 	}
-//	public String getCustPassword() {
-//		return Customer.custPassword.get(this.custID);
-//	}
 
 	void credit(double creditAmount) {
 		this.custBalance += creditAmount;
@@ -56,9 +49,10 @@ public class Customer {
 	}
 	
 	void getAccountStatement() {
-		for(Transaction t: this.custLog) {
-			System.out.println(t.transactionType+" "+t.transactionAmount+" "+t.updatedBalance);
-		}
+		System.out.println("Account Statement for "+this.custID+" "+this.custName);
+		System.out.println("Transaction Type\tTransaction Amount\tUpdated Balance");
+		for(Transaction t: this.custLog)
+			System.out.println(t.transactionType+"\t\t\t"+t.transactionAmount+"\t\t\t"+t.updatedBalance);
 	}
 	
 }
