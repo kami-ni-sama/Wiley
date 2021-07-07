@@ -18,7 +18,7 @@ public class Customer {
 		this.custName = custName;
 		this.custID = "CUST" + ++autoIncrementID;
 		this.custEMail = custEMail;
-		Customer.custPassword.put(custEMail, custPassword);
+		Customer.custPassword.put(custID, custPassword);
 		this.custBalance = 0.0;
 		
 	}
@@ -30,15 +30,18 @@ public class Customer {
 	public void setCustEMail(String custEMail) {
 		this.custEMail = custEMail;
 	}
+	public String getCustEMail() {
+		return this.custEMail;
+	}
 	public double getCustBalance() {
 		return custBalance;
 	}
 	public static void setCustPassword(String custID, String custNewPassword) {
 		Customer.custPassword.replace(custID, custNewPassword);
 	}
-	public String getCustPassword() {
-		return Customer.custPassword.get(custID);
-	}
+//	public String getCustPassword() {
+//		return Customer.custPassword.get(this.custID);
+//	}
 
 	void credit(double creditAmount) {
 		this.custBalance += creditAmount;
@@ -57,4 +60,5 @@ public class Customer {
 			System.out.println(t.transactionType+" "+t.transactionAmount+" "+t.updatedBalance);
 		}
 	}
+	
 }

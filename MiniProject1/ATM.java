@@ -9,10 +9,9 @@ public class ATM {
 		c1.credit(10000);
 		c1.debit(5000);
 		c1.getAccountStatement();
-		System.out.println(c1.getCustPassword());
 		System.out.println(c1.getCustID());
 		Customer.setCustPassword(c1.getCustID(), "password4321");
-		System.out.println(c1.getCustPassword());
+		
 	}
 
 }
