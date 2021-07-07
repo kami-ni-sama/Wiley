@@ -25,5 +25,6 @@ Class structure:
 	-withdraw
 	-displayLogs(display all the previous transactions)
 	-changePassword
+	-changeEmail
 	-deleteAccount
 */
