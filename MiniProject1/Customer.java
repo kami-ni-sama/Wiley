@@ -4,12 +4,13 @@ import java.util.*;
 
 public class Customer {
 	static int autoIncrementID = 0; 
-	private String custName;
-	private String custID;
-	private String custEMail;
-	private static HashMap<String, String> custPassword = new HashMap<String, String>();
-	private double custBalance;
-	private ArrayList<Transaction> custLog = new ArrayList<Transaction>();
+	String custName;
+	String custID;
+	String custEMail;
+	static HashMap<String, String> custPassword = new HashMap<String, String>();
+	double custBalance;
+	ArrayList<Transaction> custLog;
+	// = new ArrayList<Transaction>()
 	
 	public Customer(String custName, String custEMail, String custPassword) {
 		this.custName = custName;
@@ -17,11 +18,12 @@ public class Customer {
 		this.custEMail = custEMail;
 		Customer.custPassword.put(custID, custPassword);
 		this.custBalance = 0.0;
-		
+		this.custLog = new ArrayList<Transaction>();
 	}
 	
 	public String getCustID() {
 		return custID;
+		
 	}
 	public void setCustEMail(String custEMail) {
 		this.custEMail = custEMail;
@@ -49,10 +51,32 @@ public class Customer {
 	}
 	
 	void getAccountStatement() {
-		System.out.println("Account Statement for "+this.custID+" "+this.custName);
+		System.out.println("Account Statement for "+this.custName+" "+this.custEMail);
 		System.out.println("Transaction Type\tTransaction Amount\tUpdated Balance");
 		for(Transaction t: this.custLog)
 			System.out.println(t.transactionType+"\t\t\t"+t.transactionAmount+"\t\t\t"+t.updatedBalance);
 	}
+	
+	boolean checkPassword(String id, String pass) {
+		if(Customer.custPassword.get(id) != null) {
+			if(Customer.custPassword.get(id).equals(pass)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	void changePassword(String newPassword) {
+		Customer.setCustPassword(this.custID, newPassword);
+	}
+	
+	void changeEMail(String newEMail) {
+		this.custEMail = newEMail;
+	}
+	
+//	static void printPasswords() {
+//		for (Map.Entry<String, String> e : Customer.custPassword.entrySet())
+//            System.out.println(e.getKey()+" "+e.getValue());
+//	}
 	
 }
