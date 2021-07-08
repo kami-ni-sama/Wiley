@@ -9,7 +9,8 @@ public class Customer {
 	private String custEMail;
 	private static HashMap<String, String> custPassword = new HashMap<String, String>();
 	private double custBalance;
-	private ArrayList<Transaction> custLog = new ArrayList<Transaction>();
+	private ArrayList<Transaction> custLog;
+	// = new ArrayList<Transaction>()
 	
 	public Customer(String custName, String custEMail, String custPassword) {
 		this.custName = custName;
@@ -17,11 +18,12 @@ public class Customer {
 		this.custEMail = custEMail;
 		Customer.custPassword.put(custID, custPassword);
 		this.custBalance = 0.0;
-		
+		this.custLog = new ArrayList<Transaction>();
 	}
 	
 	public String getCustID() {
 		return custID;
+		
 	}
 	public void setCustEMail(String custEMail) {
 		this.custEMail = custEMail;
@@ -53,6 +55,24 @@ public class Customer {
 		System.out.println("Transaction Type\tTransaction Amount\tUpdated Balance");
 		for(Transaction t: this.custLog)
 			System.out.println(t.transactionType+"\t\t\t"+t.transactionAmount+"\t\t\t"+t.updatedBalance);
+	}
+	
+	boolean checkPassword(String id, String pass) {
+//		Customer.printPasswords();
+		String tp = Customer.custPassword.get(id);
+//		System.out.println(id);
+//		System.out.println(tp);
+		if(tp != null) {
+			if(tp.equals(pass)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	static void printPasswords() {
+		for (Map.Entry<String, String> e : Customer.custPassword.entrySet())
+            System.out.println(e.getKey()+" "+e.getValue());
 	}
 	
 }
