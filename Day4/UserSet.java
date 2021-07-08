@@ -42,7 +42,7 @@ class User {
 	
 
 }
-
+// Case 3:
 class MyComparator implements Comparator{
 
 	@Override
@@ -55,14 +55,6 @@ class MyComparator implements Comparator{
 			}
 			return -1;
 		}
-//		else if(o2 instanceof User) {
-//			if(o1 instanceof User) {
-//				return ((User) o2).name.compareTo(((User) o1).name);
-//			}else if(o2 instanceof String) {
-//				return ((User) o2).name.compareTo(((String) o1));
-//			}
-//			return 1;
-//		}
 		if(o1 instanceof String) {
 			if(o2 instanceof String) {
 				return ((String) o1).compareTo(((String) o2));
@@ -71,26 +63,12 @@ class MyComparator implements Comparator{
 			}
 			return -1;
 		}
-//		else if(o2 instanceof String) {
-//			if(o1 instanceof String) {
-//				return ((String) o2).compareTo(((String) o1));
-//			}else if(o2 instanceof User) {
-//				return ((String) o2).compareTo(((User) o1).name);
-//			}
-//			return 1;
-//		}
 		if(o1 instanceof Integer) {
 			if(o2 instanceof Integer) {
 				return (Integer)o1 - (Integer)o2;
 			}
 			return -1;
 		}
-//		else if(o2 instanceof Integer) {
-//			if(o1 instanceof Integer) {
-//				return (Integer)o1 - (Integer)o2;
-//			}
-//			return 1;
-//		}
 		return 0;
 	}
 	
