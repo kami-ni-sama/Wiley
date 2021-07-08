@@ -5,7 +5,6 @@ import java.util.*;
 public class UserSet{
 	public static void main(String[] args) {
 		TreeSet userSet = new TreeSet(new MyComparator());
-//		TreeSet<User> userSet = new TreeSet<>((u1, u2)-> u2.getName().compareTo(u1.getName()));
 		userSet.add(new Integer(2));
 		userSet.add(new Integer(1));
 		userSet.add(new User(2, "User2"));
@@ -13,10 +12,11 @@ public class UserSet{
 		userSet.add(new String("Hi"));
 		userSet.add(new String("Hello"));
 		userSet.forEach(System.out::println);
+//		userSet.forEach(u->u instanceof User ? System.out.println(u.id+u.id) : System.out.println(u));
 	}
 }
 
-class User implements Comparable{
+class User {
 	int id;
 	String name;
 	
@@ -24,10 +24,13 @@ class User implements Comparable{
 		this.id = id;
 		this.name = name;
 	}
-	@Override
-	public int compareTo(Object o) {
-		// TODO Auto-generated method stub
-		return 0;
+
+	public int getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
 	}
 	
 
@@ -44,14 +47,15 @@ class MyComparator implements Comparator{
 				return ((User) o1).name.compareTo(((String) o2));
 			}
 			return -1;
-		}else if(o2 instanceof User) {
-			if(o1 instanceof User) {
-				return ((User) o2).name.compareTo(((User) o1).name);
-			}else if(o2 instanceof String) {
-				return ((User) o2).name.compareTo(((String) o1));
-			}
-			return 1;
 		}
+//		else if(o2 instanceof User) {
+//			if(o1 instanceof User) {
+//				return ((User) o2).name.compareTo(((User) o1).name);
+//			}else if(o2 instanceof String) {
+//				return ((User) o2).name.compareTo(((String) o1));
+//			}
+//			return 1;
+//		}
 		if(o1 instanceof String) {
 			if(o2 instanceof String) {
 				return ((String) o1).compareTo(((String) o2));
@@ -59,25 +63,27 @@ class MyComparator implements Comparator{
 				return ((String) o1).compareTo(((User) o2).name);
 			}
 			return -1;
-		}else if(o2 instanceof String) {
-			if(o1 instanceof String) {
-				return ((String) o2).compareTo(((String) o1));
-			}else if(o2 instanceof User) {
-				return ((String) o2).compareTo(((User) o1).name);
-			}
-			return 1;
 		}
+//		else if(o2 instanceof String) {
+//			if(o1 instanceof String) {
+//				return ((String) o2).compareTo(((String) o1));
+//			}else if(o2 instanceof User) {
+//				return ((String) o2).compareTo(((User) o1).name);
+//			}
+//			return 1;
+//		}
 		if(o1 instanceof Integer) {
 			if(o2 instanceof Integer) {
 				return (Integer)o1 - (Integer)o2;
 			}
 			return -1;
-		}else if(o2 instanceof Integer) {
-			if(o1 instanceof Integer) {
-				return (Integer)o1 - (Integer)o2;
-			}
-			return 1;
 		}
+//		else if(o2 instanceof Integer) {
+//			if(o1 instanceof Integer) {
+//				return (Integer)o1 - (Integer)o2;
+//			}
+//			return 1;
+//		}
 		return 0;
 	}
 	
@@ -94,33 +100,18 @@ class MyComparator implements Comparator{
 //				return ((String) o1).compareTo(((String) o2));
 //			}
 //			return -1;
-//		}else if(o2 instanceof String) {
-//			if(o1 instanceof String) {
-//				return ((String) o2).compareTo(((String) o1));
-//			}
-//			return 1;
 //		}
 //		if(o1 instanceof User) {
 //			if(o2 instanceof User) {
 //				return ((User) o1).id - ((User) o2).id;
 //			}
 //			return -1;
-//		}else if(o2 instanceof User) {
-//			if(o1 instanceof User) {
-//				return ((User) o2).id - ((User) o1).id;
-//			}
-//			return 1;
 //		}
 //		if(o1 instanceof Integer) {
 //			if(o2 instanceof Integer) {
 //				return (Integer)o1 - (Integer)o2;
 //			}
 //			return -1;
-//		}else if(o2 instanceof Integer) {
-//			if(o1 instanceof Integer) {
-//				return (Integer)o1 - (Integer)o2;
-//			}
-//			return 1;
 //		}
 //		return 0;
 //	}
@@ -137,33 +128,18 @@ class MyComparator implements Comparator{
 //				return (Integer)o1 - (Integer)o2;
 //			}
 //			return -1;
-//		}else if(o2 instanceof Integer) {
-//			if(o1 instanceof Integer) {
-//				return (Integer)o1 - (Integer)o2;
-//			}
-//			return 1;
 //		}
 //		if(o1 instanceof User) {
 //			if(o2 instanceof User) {
 //				return ((User) o1).id - ((User) o2).id;
 //			}
 //			return -1;
-//		}else if(o2 instanceof User) {
-//			if(o1 instanceof User) {
-//				return ((User) o2).id - ((User) o1).id;
-//			}
-//			return 1;
 //		}
 //		if(o1 instanceof String) {
 //			if(o2 instanceof String) {
 //				return ((String) o1).compareTo(((String) o2));
 //			}
 //			return -1;
-//		}else if(o2 instanceof String) {
-//			if(o1 instanceof String) {
-//				return ((String) o2).compareTo(((String) o1));
-//			}
-//			return 1;
 //		}
 //		return 0;
 //	}
