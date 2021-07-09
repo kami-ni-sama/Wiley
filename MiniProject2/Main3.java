@@ -4,6 +4,10 @@ import java.util.*;
 
 
 /*
+ * 
+ * Implementation using TreeMaps
+ * 
+ * 
  * Input : 
  * Input format: 
  * [ 2 User2 [ [ BOM 400018 ] ,  [ BOM 400037 ] ,  [ DEL 110001 ] ,  [ BLR 560001 ] ] ] 
