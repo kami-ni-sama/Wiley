@@ -46,9 +46,13 @@ public class Main {
 		users.add(new User(3, "User3", address3));
 		System.out.println("Input format: ");
 		users.forEach(System.out::println);
+		ArrayList<Address> tempAddress = new ArrayList<>();
 		HashSet<Address> address = new HashSet<>();
 		for(User user:users)
-			user.userAddress.stream().forEach(addr-> address.add(addr));
+			user.userAddress.stream().forEach(addr-> tempAddress.add(addr));
+		for(Address tempaddress: tempAddress)
+			if(tempAddress.stream().filter(a->a.equals(tempaddress)).count() > 1) 
+				address.add(tempaddress);
 		ArrayList<NewAddress> addresses = new ArrayList<>();
 		for(Address addr:address) {
 			addresses.add(new NewAddress(addr.city, addr.zipcode));
@@ -56,6 +60,7 @@ public class Main {
 				addresses.stream().filter(adr->(adr.newCity.equals(addr.city))).findFirst().orElse(null).addUser(user.userId, user.userName);
 			});
 		}
+		
 		for(NewAddress newAddress : addresses)
 			Collections.sort(newAddress.users, new NewUserComparator());
 		Collections.sort(addresses, new NewAddressComparator());
