@@ -78,6 +78,12 @@ public class Main2 {
 	            @Override 
 	            public int compare(Map.Entry<Address,ArrayList<NewUser>> e1, Map.Entry<Address,ArrayList<NewUser>> e2) {
 	                int res = e2.getValue().size() - e1.getValue().size();
+	                if(res == 0) {
+	                	if(e1.getKey().city == e2.getKey().city) 
+	                		return e1.getKey().zipcode.compareTo(e2.getKey().zipcode);
+	                	else
+	                		return e1.getKey().city.compareTo(e2.getKey().city);
+	                }
 	                return res != 0 ? res : 1;
 	            }
 	        }
