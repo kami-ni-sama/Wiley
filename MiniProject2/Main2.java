@@ -55,53 +55,29 @@ public class Main2 {
 		for(User user:users)
 			user.userAddress.stream().forEach(addr-> address.add(addr));
 		address.forEach(System.out::println);
-		TreeMap<Address, ArrayList<NewUser>> addresses = new TreeMap<>(new AddressComparator());
-		
+		SortedSet<Map.Entry<Address, ArrayList<NewUser>>> addresses = new TreeSet<Map.Entry<Address,ArrayList<NewUser>>>(new FinalComparator());
 		for(Address addr:address) {
 			ArrayList<NewUser> tempUsers = new ArrayList<>();
 			users.stream().filter(user->user.userAddress.contains(addr)).forEach(user->{
 				tempUsers.add( new NewUser(user.userId, user.userName));
 			});
-			addresses.put(addr, tempUsers);
+			addresses.add(Map.entry(addr, tempUsers));
 		}
-		
 		System.out.println("Output format without sorting: ");
-		addresses.entrySet().forEach(System.out::println);
-		System.out.println("Output format with sorting: ");
-		entriesSortedByValues(addresses).forEach(System.out::println);
+		addresses.forEach(System.out::println);
 		
 	}
 	
-	static <K,V extends Comparable<? super V>> SortedSet<Map.Entry<Address, ArrayList<NewUser>>> entriesSortedByValues(TreeMap<Address,ArrayList<NewUser>> map) {
-	    SortedSet<Map.Entry<Address, ArrayList<NewUser>>> sortedEntries = new TreeSet<Map.Entry<Address,ArrayList<NewUser>>>(
-	        new Comparator<Map.Entry<Address,ArrayList<NewUser>>>() {
-	            @Override 
-	            public int compare(Map.Entry<Address,ArrayList<NewUser>> e1, Map.Entry<Address,ArrayList<NewUser>> e2) {
-	                int res = e2.getValue().size() - e1.getValue().size();
-	                if(res == 0) {
-	                	if(e1.getKey().zipcode.equals(e2.getKey().zipcode)) 
-	                		return e1.getKey().city.compareTo(e2.getKey().city);
-	                	else
-	                		return e1.getKey().zipcode.compareTo(e2.getKey().zipcode);
-	                }
-	                return res;
-//	                return res != 0 ? res : 1;
-	            }
-	        }
-	    );
-	    sortedEntries.addAll(map.entrySet());
-	    return sortedEntries;
-	}
 }
 
 /* Output:
  * [ DEL 110001 ] =[ [ 2 User2 ] ,  [ 44 User44 ] ,  [ 3 User3 ] ]
  * [ BLR 560001 ] =[ [ 2 User2 ] ,  [ 3 User3 ] ]
- * [ BLR 560002 ] =[ [ 3 User3 ] ]
- * [ BLR 560038 ] =[ [ 44 User44 ] ]
+ * [ DEL 110096 ] =[ [ 44 User44 ] ]
  * [ BOM 400018 ] =[ [ 2 User2 ] ]
  * [ BOM 400037 ] =[ [ 2 User2 ] ]
- * [ DEL 110096 ] =[ [ 44 User44 ] ]
+ * [ BLR 560002 ] =[ [ 3 User3 ] ]
+ * [ BLR 560038 ] =[ [ 44 User44 ] ]
  */
 
 
