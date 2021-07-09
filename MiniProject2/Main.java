@@ -4,6 +4,9 @@ import java.util.*;
 
 
 /*
+ * 
+ * Implementation using ArrayLists
+ * 
  * Input : 
  * [ 2 , User2,  [ [ DEL, 110001], [ BLR, 560001] ] ]
  * [ 1 , User1,  [ [ GN , 201305], [ BLR, 560001] ] ]
