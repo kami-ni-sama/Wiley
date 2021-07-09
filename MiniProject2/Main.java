@@ -60,6 +60,18 @@ public class Main {
 				addresses.stream().filter(adr->(adr.newCity.equals(addr.city))).findFirst().orElse(null).addUser(user.userId, user.userName);
 			});
 		}
+//		**Implementation using TreeMap		
+//		TreeMap<Address, ArrayList<NewUser>> addresses = new TreeMap<>(new AddressComparator());
+//		for(Address addr:address) {
+//			ArrayList<NewUser> tempUsers = new ArrayList<>();
+//			users.stream().filter(user->user.userAddress.contains(addr)).forEach(user->{
+//				tempUsers.add( new NewUser(user.userId, user.userName));
+//			});
+//			addresses.put(addr, tempUsers);
+//		}
+//		System.out.println("Output format: ");
+//		addresses.entrySet().forEach(System.out::println);
+		
 		
 		for(NewAddress newAddress : addresses)
 			Collections.sort(newAddress.users, new NewUserComparator());
