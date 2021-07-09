@@ -44,23 +44,22 @@ public class Main {
 		users.add(new User(2, "User2", address2));
 		users.add(new User(1, "User1", address1));
 		users.add(new User(3, "User3", address3));
+		System.out.println("Input format: ");
 		users.forEach(System.out::println);
 		HashSet<Address> address = new HashSet<>();
 		for(User user:users)
 			user.userAddress.stream().forEach(addr-> address.add(addr));
 		ArrayList<NewAddress> addresses = new ArrayList<>();
-		for(Address addr:address)
+		for(Address addr:address) {
 			addresses.add(new NewAddress(addr.city, addr.zipcode));
-		for(Address addr:address) 
 			users.stream().filter(user->user.userAddress.contains(addr)).forEach(user->{
-				NewAddress temp = addresses.stream().filter(adr->(adr.newCity.equals(addr.city))).findFirst().orElse(null);
-				temp.addUser(user.userId, user.userName);
+				addresses.stream().filter(adr->(adr.newCity.equals(addr.city))).findFirst().orElse(null).addUser(user.userId, user.userName);
 			});
-		addresses.forEach(System.out::println);
-		System.out.println("***************");
+		}
 		for(NewAddress newAddress : addresses)
 			Collections.sort(newAddress.users, new NewUserComparator());
 		Collections.sort(addresses, new NewAddressComparator());
+		System.out.println("Output format: ");
 		addresses.forEach(System.out::println);
 		
 	}
