@@ -34,10 +34,12 @@ public class ThreadFibonacci implements Runnable {
 
 	public static void main(String[] args)
 
-	{
+	{	Scanner sc = new Scanner(System.in);
+	System.out.println("Enter the number of output lines: ");
+		int n = sc.nextInt();
 		try {
 
-			for (int i=1;i<=5;i++){
+			for (int i=1;i<=n;i++){
 				ThreadFibonacci f= new ThreadFibonacci(i);
 				Thread threadf= new Thread(f);
 				threadf.start();
