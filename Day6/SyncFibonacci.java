@@ -6,7 +6,7 @@ public class SyncFibonacci {
 
 	public static void main(String[] args) throws InterruptedException{
 		List<Integer> fib = new ArrayList<Integer>();
-		int n = 10;
+		int n = 5;
 		SyncFibonacciWriter write = new SyncFibonacciWriter(fib, n);
 		SyncFibonacciReader read = new SyncFibonacciReader(fib, n);
 		Thread writer = new Thread(write, "Writer");
@@ -53,6 +53,7 @@ class SyncFibonacciWriter implements Runnable{
 	
 	void add(int a, int b, int n) throws InterruptedException {
 		synchronized (arr) {
+			System.out.println("Entering writer");
 			try {
 				while(arr.size()!=n) {
 					c = a+b;
@@ -62,15 +63,22 @@ class SyncFibonacciWriter implements Runnable{
 					a = b;
 					b = c;
 					Thread.sleep(500);
-					arr.notify();
+//					arr.notify();
+					
+					
 				}
-//				arr.wait();
 				Thread.currentThread().wait();
 				Thread.currentThread().interrupt();
+//				arr.wait();
 			}catch(InterruptedException ex) {
 				System.out.println(ex);
 			}
+//			Thread.sleep(500);
+			
+			
+			
 		}
+		
 	}
 	
 }
@@ -97,18 +105,24 @@ class SyncFibonacciReader implements Runnable{
 	
 	void read(int n) throws InterruptedException {
 		synchronized (arr) {
-			Thread.sleep(50);
+			System.out.println("Entering reader");
+			Thread.sleep(500);
 			for(int i = 0; i < n-2; i++) {
 				System.out.println(arr.get(i)+" + "+arr.get(i+1)+" = "+arr.get(i+2));
 			}
-			arr.notify();
-			
+//			arr.notify();
+//			Thread.sleep(500);
 		}
-//		arr.wait();
 		Thread.currentThread().wait();
 		Thread.currentThread().interrupt();
+		
+		
+		
+//		Thread.currentThread().wait();
+		
 //		arr.wait();
 //		System.exit(0);
+		
 	}
 	
 }
