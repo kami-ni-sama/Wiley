@@ -50,7 +50,7 @@ class Process implements Runnable{
 		counter--;
 	}
 	@Override
-	public synchronized void run() {
+	public void run() {
 		this.increment();
 		System.out.println("I : "+Thread.currentThread().getName()+" "+this.getCounter());
 		this.decrement();
