@@ -3,13 +3,13 @@ package wiley.training.advanced.miniproject1;
 import java.util.*;
 
 public class Customer {
-	static int autoIncrementID = 0; 
-	String custName;
-	String custID;
-	String custEMail;
-	static HashMap<String, String> custPassword = new HashMap<String, String>();
-	double custBalance;
-	ArrayList<Transaction> custLog;
+	private static int autoIncrementID = 0; 
+	private String custName;
+	private String custID;
+	private String custEMail;
+	private static HashMap<String, String> custPassword = new HashMap<String, String>();
+	private double custBalance;
+	private ArrayList<Transaction> custLog;
 	// = new ArrayList<Transaction>()
 	
 	public Customer(String custName, String custEMail, String custPassword) {
@@ -40,21 +40,33 @@ public class Customer {
 
 	void credit(double creditAmount) {
 		this.custBalance += creditAmount;
-		Transaction t = new Transaction(TransactionType.Credit, creditAmount, this.custBalance);
+		Transaction t = new Transaction(TransactionType.Credit, creditAmount, this.custBalance, "Cash", this.custEMail);
+		this.custLog.add(t);
+	}
+	
+	void credit(double creditAmount, String payer) {
+		this.custBalance += creditAmount;
+		Transaction t = new Transaction(TransactionType.Credit, creditAmount, this.custBalance, payer, this.custEMail);
 		this.custLog.add(t);
 	}
 	
 	void debit(double debitAmount) {
 		this.custBalance -= debitAmount;
-		Transaction t = new Transaction(TransactionType.Debit, debitAmount, this.custBalance);
+		Transaction t = new Transaction(TransactionType.Debit, debitAmount, this.custBalance, this.custEMail, "Cash");
+		this.custLog.add(t);
+	}
+	
+	void debit(double debitAmount, String payee) {
+		this.custBalance -= debitAmount;
+		Transaction t = new Transaction(TransactionType.Debit, debitAmount, this.custBalance, this.custEMail, payee);
 		this.custLog.add(t);
 	}
 	
 	void getAccountStatement() {
 		System.out.println("Account Statement for "+this.custName+" "+this.custEMail);
-		System.out.println("Transaction Type\tTransaction Amount\tUpdated Balance");
+		System.out.println("Transaction Type\tPayer\tPayee\tTransaction Amount\tUpdated Balance");
 		for(Transaction t: this.custLog)
-			System.out.println(t.transactionType+"\t\t\t"+t.transactionAmount+"\t\t\t"+t.updatedBalance);
+			System.out.println(t.transactionType+"\t\t\t"+t.payer+"\t"+t.payee+"\t"+t.transactionAmount+"\t\t\t"+t.updatedBalance);
 	}
 	
 	boolean checkPassword(String id, String pass) {
@@ -71,6 +83,9 @@ public class Customer {
 	}
 	
 	void changeEMail(String newEMail) {
+		String password = Customer.custPassword.get(newEMail);
+		Customer.custPassword.remove(this.custEMail);
+		Customer.custPassword.put(newEMail, password);
 		this.custEMail = newEMail;
 	}
 	

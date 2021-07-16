@@ -2,12 +2,12 @@ package wiley.training.advanced.miniproject1;
 /*
 Banking Application:
 
-1)Create account
+1)Create account/ Delete account
 2)Authorisation(using passwords)
 3)Credit/Debit
 4)Check balance
 5)Get statement(all transactions)
-
+6)Transfer money from one account to another
 Class structure:
 -member variables:
 	**All member variables are private
@@ -16,14 +16,19 @@ Class structure:
 	-email
 	-password(static hash table)
 	-balance
-	-logs(for transactions)
+	-logs(for transactions)(denomination to be added)
 -member functions:
 	**Getter/Setter methods required variables
 	-createAccount
 	-checkBalance
+	-credit
 	-deposit
-	-displayLogs(display all the previous transactions)
+	-displayLogs(display all the previous transactions)(Display with denominations)
 	-changePassword
 	-changeEmail
 	-deleteAccount
+
+***Things to work on
+*Synchronized  	
+	
 */
