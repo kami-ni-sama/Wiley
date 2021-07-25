@@ -77,11 +77,12 @@ public class LinkedList<T> {
 	
 	void print() {
 		Node<T> current = this.head;
+		System.out.print("Head");
 		while(current != null) {
-			System.out.print(current.data+" ");
+			System.out.print("-->"+current.data);
 			current = current.next;
 		}
-		System.out.println();
+		System.out.print("-->Null\n");
 	}
 	
 	void deleteNodeVal(T data) {
