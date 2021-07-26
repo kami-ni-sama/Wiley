@@ -1,16 +1,16 @@
 package dsa.algorithm.sorting;
 
-public abstract class MySort {
+public abstract class MySort implements Sort{
 	
-	abstract void sort(int[] arr);
+	public abstract void sort(int[] arr);
 	
-	void swap(int i, int j, int[] arr) {
+	public void swap(int i, int j, int[] arr) {
 		int temp = arr[i];
 		arr[i] = arr[j];
 		arr[j] = temp;
 	}
 	
-	void print(int[] arr) {
+	public void print(int[] arr) {
 		for(int elem : arr) {
 			System.out.print(elem+" ");
 		}
