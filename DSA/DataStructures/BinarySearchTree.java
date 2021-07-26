@@ -1,7 +1,5 @@
 package dsa.datastructure;
 
-
-
 public class BinarySearchTree {
 
 	class Node {
@@ -21,7 +19,7 @@ public class BinarySearchTree {
 	}
 
 	void insert(int data) {
-		//		insertIterative(data);
+		//insertIterative(data);
 		root = insertRecursive(this.root, data);
 	}
 
@@ -51,16 +49,16 @@ public class BinarySearchTree {
 		}
 	}
 
-	@SuppressWarnings("unused")
+//	@SuppressWarnings("unused")
 	private Node insertRecursive(Node root, int data) {
-		Node node=new Node(data);
-		if(root==null) {
-			root=node;
+		Node newNode = new Node(data);
+		if(root == null) {
+			root = newNode;
 			return root;
 		}
-		else if(data<root.data)
-			root.left=insertRecursive(root.left,data);
-		else if(data>root.data)
+		else if(data < root.data)
+			root.left=insertRecursive(root.left, data);
+		else if(data > root.data)
 			root.right=insertRecursive(root.right, data);
 
 		return root;
@@ -140,7 +138,7 @@ public class BinarySearchTree {
 	}
 
 	boolean dfsSearch(int data) {
-		//	   return dfsSearchIterative(this.root, data);
+		//return dfsSearchIterative(this.root, data);
 		return dfsSearchRecursive(this.root, data);
 	}
 
@@ -157,7 +155,7 @@ public class BinarySearchTree {
 		return false;
 	}
 
-	@SuppressWarnings("unused")
+//	@SuppressWarnings("unused")
 	private boolean dfsSearchRecursive(Node root, int data) {
 		if(root == null)
 			return false;
@@ -167,6 +165,57 @@ public class BinarySearchTree {
 			return dfsSearchRecursive(root.right, data);
 		else
 			return true;
+	}
+	
+	int min() {
+		if(this.root == null)
+			return 0;
+		else
+			return minValue(this.root);
+	}
+	
+	private int minValue(Node root) {
+		int minVal = root.data;
+		while(root.left!=null) {
+			minVal = root.left.data;
+			root = root.left;
+		}
+		return minVal;
+	}
+	
+	int max() {
+		if(this.root == null)
+			return 0;
+		else
+			return maxValue(this.root);
+	}
+	
+	private int maxValue(Node root) {
+		while(root.right!=null)
+			root = root.right;
+		return root.data;
+	}
+	
+	void remove(int data) {
+		root = removeRecursive(this.root, data);
+	}
+	
+	private Node removeRecursive(Node root, int data) {
+		if(root == null)
+			return root;
+		if(data < root.data)
+			root.left = removeRecursive(root.left, data);
+		else if(data > root.data)
+			root.right = removeRecursive(root.right, data);
+		else {
+			if(root.left == null)
+				return root.right;
+			else if(root.right == null)
+				return root.left;
+			root.data = minValue(root.right);
+			root.right = removeRecursive(root.right, root.data);
+		}
+		return root;
 	}
 
 }
