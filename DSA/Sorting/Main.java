@@ -12,7 +12,7 @@ public class Main {
 		int [] arr = new int[n];
 		for(int i = 0; i < n; i++)
 			arr[i] = sc.nextInt();
-		MySort s = new QuickSort();
+		Sort s = new BubbleSort();
 		System.out.println("Unsorted Array: ");
 		s.print(arr);
 		s.sort(arr);
