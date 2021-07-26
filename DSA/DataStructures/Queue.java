@@ -5,6 +5,15 @@ public class Queue<T> {
 	private int front;
 	private int rear;
 	private int capacity;
+	final int MAX_CAPACITY = 10;
+	
+	@SuppressWarnings("unchecked")
+	Queue(){
+		arr = (T[]) new Object[MAX_CAPACITY];
+		front = 0;
+		rear = -1;
+		capacity = MAX_CAPACITY;
+	}
 	
 	@SuppressWarnings("unchecked")
 	Queue(int size) {
@@ -30,12 +39,15 @@ public class Queue<T> {
 		arr[++rear] = data;
 	}
 	
-	void dequeue() {
+	T dequeue() {
 		if(isEmpty()) {
 			System.out.println("Empty queue");
-			return;
+			return null;
 		}
+		T temp = arr[front];
 		front++;
+		return temp;
+		
 	}
 	
 	T peek() {

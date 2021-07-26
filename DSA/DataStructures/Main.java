@@ -9,7 +9,7 @@ public class Main {
 //		Queue<Integer> q = new Queue<Integer>(5);
 //		q.enqueue(1);
 //		q.enqueue(2);
-//		q.dequeue();
+//		System.out.println(q.dequeue());
 //		q.enqueue(3);
 //		q.enqueue(4);
 //		q.print();
@@ -36,17 +36,15 @@ public class Main {
 //		ll.print();
 		
 		BinarySearchTree bst = new BinarySearchTree();
-		bst.add(1);
-		bst.add(3);
-		bst.add(5);
-		bst.add(2);
-		bst.add(4);
+		bst.insert(1);
+		bst.insert(3);
+		bst.insert(5);
+		bst.insert(2);
+		bst.insert(4);
 		System.out.println("Inorder");
 		bst.inorder();
-		System.out.println("Preorder");
-		bst.preorder();
-		System.out.println("Postorder");
-		bst.postorder();
+		bst.bfs();
+		System.out.println(bst.dfsSearch(3));
 		
 		
 	}
