@@ -175,9 +175,12 @@ public class BinarySearchTree {
 	}
 	
 	private int minValue(Node root) {
-		while(root.left!=null)
+		int minVal = root.data;
+		while(root.left!=null) {
+			minVal = root.left.data;
 			root = root.left;
-		return root.data;
+		}
+		return minVal;
 	}
 	
 	int max() {
@@ -193,14 +196,13 @@ public class BinarySearchTree {
 		return root.data;
 	}
 	
-	Node remove(int data) {
-		if(this.root == null)
-			return null;
-		else
-			return removeRecursive(this.root, data);
+	void remove(int data) {
+		root = removeRecursive(this.root, data);
 	}
 	
 	private Node removeRecursive(Node root, int data) {
+		if(root == null)
+			return root;
 		if(data < root.data)
 			root.left = removeRecursive(root.left, data);
 		else if(data > root.data)
