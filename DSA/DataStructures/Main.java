@@ -1,4 +1,4 @@
-package dsa.datastructure;
+package dsa.datastructures;
 
 import java.util.*;
 
@@ -13,8 +13,6 @@ public class Main {
 //		q.enqueue(3);
 //		q.enqueue(4);
 //		q.print();
-//		System.out.println(q.peek());
-//		System.out.println(q.size());
 //		
 //		Stack<Integer> s = new Stack<Integer>(5);
 //		s.print();
@@ -34,19 +32,27 @@ public class Main {
 //		ll.print();
 //		ll.reverse();
 //		ll.print();
+//		
+//		BinarySearchTree bst = new BinarySearchTree();
+//		bst.insert(13);
+//		bst.insert(32);
+//		bst.insert(56);
+//		bst.insert(22);
+//		bst.insert(47);
+//		bst.bfs();
+//		System.out.println(bst.min());
+//		bst.remove(13);
+//		bst.bfs();
 		
-		BinarySearchTree bst = new BinarySearchTree();
-		bst.insert(1);
-		bst.insert(3);
-		bst.insert(5);
-		bst.insert(2);
-		bst.insert(4);
-		System.out.println("Inorder");
-		bst.inorder();
-		bst.bfs();
-		System.out.println(bst.dfsSearch(3));
-		
-		
+		Graph graph = new Graph();
+		graph.addNewEdge("Delhi", "Ahemdabad", 3,  true);
+		graph.addNewEdge("Patna", "Delhi", 2, true);
+		graph.addNewEdge("Ahemdabad", "Indore", 4, true);
+		graph.addNewEdge("Indore", "Patna", 5, true);
+		graph.addNewEdge("Chennai", "Ahemdabad", 3, true);
+		graph.addNewEdge("Chennai", "Patna", 2, true);
+		System.out.println(graph);
+		System.out.println("Number of vertices : "+graph.countVertices());
+		System.out.println("Number of edges : "+graph.countEdges());
 	}
-
 }

@@ -1,4 +1,4 @@
-package dsa.datastructure;
+package dsa.datastructures;
 
 public class BinarySearchTree {
 
