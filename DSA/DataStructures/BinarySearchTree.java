@@ -119,12 +119,12 @@ public class BinarySearchTree {
 		}
 	}
 
-	public void bfs() {
-		bfsIterative(this.root);
+	public void bft() {
+		bftIterative(this.root);
 		System.out.println();
 	}
 
-	private void bfsIterative(Node root) {
+	private void bftIterative(Node root) {
 		Queue<Node> queue = new Queue<Node>();
 		queue.enqueue(root);
 		while(!queue.isEmpty()) {
@@ -135,6 +135,28 @@ public class BinarySearchTree {
 			if(temp.right!=null)
 				queue.enqueue(temp.right);
 		}
+	}
+	
+	public boolean bfs(int data) {
+		return bfsSearchIterative(this.root, data);
+	}
+	
+	private boolean bfsSearchIterative(Node root, int data) {
+		if(root == null) {
+			return false;
+		}
+		Queue<Node> queue = new Queue<Node>();
+		queue.enqueue(root);
+		while(!queue.isEmpty()) {
+			Node temp = queue.dequeue();
+			if(data == temp.data)
+				return true;
+			else if(data < temp.data)
+				temp = temp.left;
+			else 
+				temp = temp.right;
+		}
+		return false;
 	}
 
 	boolean dfsSearch(int data) {

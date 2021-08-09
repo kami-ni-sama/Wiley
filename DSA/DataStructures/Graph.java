@@ -91,6 +91,15 @@ public class Graph {
 		return ctr;
 	}
 	
+//	private boolean checkVisitedForDestination(ArrayList<String> visited, String source, Node destination, Boolean flag) {
+//		for(Node node: map.get(destination.getDestination())) {
+//			if(node.equals(new Node(source))) {
+//				flag = true;
+//				break;
+//			}
+//		}
+//	}
+	
 //	public String traversal(String source) {
 //		if(!map.containsKey(source))
 //			return null;
